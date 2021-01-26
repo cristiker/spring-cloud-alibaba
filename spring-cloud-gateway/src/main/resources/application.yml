@@ -1,0 +1,30 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+      routes:
+        - id: after_route
+          uri: https://example.org
+          predicates:
+            - Cookie=mycookie,mycookievalue
+  profiles:
+    active: xxxxx  # 具体的gateway配置
+#开启acutor端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      #打开端点详情
+      show-details: always
+
