@@ -24,7 +24,5 @@ public class LogGatewayFilterFactory extends AbstractNameValueGatewayFilterFacto
             ServerWebExchange serverWebExchange = exchange.mutate().request(request).build();
             return chain.filter(serverWebExchange);
         });
-
-
     }
 }

@@ -12,19 +12,13 @@ import org.springframework.context.annotation.Configuration;
 public class RouterConfig {
 
     @Bean
-    public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
+    public RouteLocator serviceRouter(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("path_route", r -> r.path("/get").uri("http://httpbin.org"))
-                .route("host_route", r -> r.host("*.myhost.org").uri("http://httpbin.org"))
-                .route("rewrite_route", r -> r.host("*.rewrite.org")
-                        .filters(f -> f.rewritePath("/foo/(?<segment>.*)", "/${segment}"))
-                        .uri("http://httpbin.org"))
-                .route("hystrix_route", r -> r.host("*.hystrix.org")
-                        .filters(f -> f.hystrix(c -> c.setName("slowcmd")))
-                        .uri("http://httpbin.org"))
-                .route("hystrix_fallback_route", r -> r.host("*.hystrixfallback.org")
-                        .filters(f -> f.hystrix(c -> c.setName("slowcmd").setFallbackUri("forward:/hystrixfallback")))
-                        .uri("http://httpbin.org"))
+                .route(p -> p
+                        .path("/get")
+                        .filters(f -> f.addRequestHeader("Hello", "World"))
+                        .uri("http://httpbin.org:80"))
                 .build();
+//        return builder.routes().build();
     }
 }

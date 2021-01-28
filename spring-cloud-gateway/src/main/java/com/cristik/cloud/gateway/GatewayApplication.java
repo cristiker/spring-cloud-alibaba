@@ -14,8 +14,6 @@ import org.springframework.cloud.gateway.support.NameUtils;
 public class GatewayApplication {
 
     public static void main(String[] args) {
-
-//        System.out.println(NameUtils.normalizeRoutePredicateName(CookieRoutePredicateFactory.class));
         SpringApplicationBuilder builder = new SpringApplicationBuilder(GatewayApplication.class);
         builder.run(args);
     }

@@ -3,9 +3,6 @@ server:
 
 spring:
   cloud:
-    nacos:
-      discovery:
-        server-addr: localhost:8848
     gateway:
       discovery:
         locator:
@@ -15,8 +12,8 @@ spring:
           uri: https://example.org
           predicates:
             - Cookie=mycookie,mycookievalue
-  profiles:
-    active: xxxxx  # 具体的gateway配置
+#  profiles:
+#    active: xxxxx  # 具体的gateway配置
 #开启acutor端点
 management:
   endpoints:
